@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import { getItems } from "../services/itemService";
+import { getItembyId, getItems, updateItem } from "../services/itemService";
 import { getCustomers } from "../services/customerService";
 import { saveOrder } from "../services/orderService";
 
@@ -130,6 +130,13 @@ const Transaction = () => {
       items: cartItems,
       grandTotal,
     };
+
+    cartItems.map(async (item) => {
+      const realItem = await getItembyId(item.itemId);
+      realItem.quantity = realItem.quantity - item.quantity;
+      updateItem(realItem, item.itemId);
+      console.log(realItem, "Item updated......");
+    });
 
     console.log(transactionData);
 
