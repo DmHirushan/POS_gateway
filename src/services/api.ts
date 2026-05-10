@@ -15,3 +15,11 @@ export const customerApi = axios.create({
         "Content-Type": "Application/json",
     }
 });
+
+export const orderApi = axios.create({
+    baseURL: "http://localhost:3001/api",
+    timeout: 5000,
+    headers: {
+        "Content-Type": "Application/json",
+    }
+})

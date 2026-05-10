@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import Navbar from "../components/Navbar"
 import type { Customer } from "../types/customer";
-import { deleteCustomer, getCustomers } from "../services/customerService";
+import { addCustomer, deleteCustomer, getCustomers } from "../services/customerService";
 import toast from "react-hot-toast";
+import AddCustomerModal from "../components/AddCustomerModal";
 
 const Customer = () => {
     const [customers, setCustomers] = useState<Customer[]>([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
       loadCustomers();
@@ -14,6 +16,10 @@ const Customer = () => {
     const loadCustomers = async () => {
       const data = await getCustomers();
       setCustomers(data);
+    }
+
+    const handleAdd = () => {
+      setIsModalOpen(true);
     }
 
     const handleDelete = (id: number) => {
@@ -54,7 +60,7 @@ const Customer = () => {
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold">Customer</h1>
           <button
-            onClick={() => {}}
+            onClick={() => {handleAdd()}}
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
             + Add New Customer
@@ -65,7 +71,7 @@ const Customer = () => {
           <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
             <thead className="bg-gray-900 text-white">
               <tr>
-                <th className="py-3 px-4 text-left">ID</th>
+                {/* <th className="py-3 px-4 text-left">ID</th> */}
                 <th className="py-3 px-4 text-left">Name</th>
                 <th className="py-3 px-4 text-left">Address</th>
                 <th className="py-3 px-4 text-left">Telephone</th>  
@@ -78,10 +84,10 @@ const Customer = () => {
             <tbody className="text-gray-700">
               {customers.map((customer) => (
                 <tr key={customer.id} className="border-b hover:bg-gray-100">
-                  <td className="py-2 px-4">{customer.id}</td>
+                  {/* <td className="py-2 px-4">{customer.id}</td> */}
                   <td className="py-2 px-4">{customer.name}</td>
                   <td className="py-2 px-4">{customer.address}</td>
-                  <td className="py-2 px-4">{customer.telNumber}</td>
+                  <td className="py-2 px-4">{customer.telPhone}</td>
 
                   {/* ✅ DELETE BUTTON */}
                   <td className="py-2 px-4">
@@ -99,6 +105,16 @@ const Customer = () => {
           </table>
         </div>
       </div>
+      <AddCustomerModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        customerCount={customers.length}
+        onAdd={async (customer: any) => {
+          await addCustomer(customer);
+          loadCustomers();
+          setIsModalOpen(false);
+  }}
+/>
     </>
   )
 }

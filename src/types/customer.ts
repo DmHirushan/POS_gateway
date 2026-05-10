@@ -2,5 +2,5 @@ export interface Customer {
     id: number;
     name: string;
     address: string;
-    telNumber: string;
+    telPhone: string;
 }

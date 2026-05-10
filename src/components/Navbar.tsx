@@ -28,8 +28,13 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-300">
-              Transaction
+            <a href="/Transaction" className="hover:text-gray-300">
+              Place Order
+            </a>
+          </li>
+          <li>
+            <a href="/history" className="hover:text-gray-300">
+              History
             </a>
           </li>
         </ul>
