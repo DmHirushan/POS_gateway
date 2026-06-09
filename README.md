@@ -1,73 +1,120 @@
-# React + TypeScript + Vite
+# SmartPOS Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Point of Sale (POS) frontend application built with React, designed to interact with microservices for managing customers, items, and orders.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Item Management
+  - View all items
+  - Add new items
+  - Update item details
+  - Delete items
 
-## React Compiler
+- Customer Management
+  - View customer records
+  - Add new customers
+  - Update customer information
+  - Delete customers
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Order Management
+  - Create orders
+  - View order history
+  - Manage order details
 
-## Expanding the ESLint configuration
+- Responsive user interface
+- REST API integration
+- Microservices-based architecture support
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React
+- JavaScript
+- Axios
+- Tailwind CSS
+- REST APIs
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+├── components/
+├── pages/
+├── services/
+├── assets/
+├── App.tsx
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Before running the application, ensure you have installed:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js
+- npm
+
+## Installation
+
+1. Clone the repository
+
+```bash
+git clone <repository-url>
 ```
+
+2. Navigate to the project directory
+
+```bash
+cd smartpos-frontend
+```
+
+3. Install dependencies
+
+```bash
+npm install
+```
+
+4. Start the development server
+
+```bash
+npm run dev
+```
+
+The application will be available at:
+
+```text
+http://localhost:5173
+```
+
+## Backend Services
+
+The frontend communicates with the following microservices:
+
+| Service | Technology |
+|----------|------------|
+| Item Service | Node.js & Express |
+| Customer Service | Spring Boot |
+| Order Service | Spring Boot |
+| Databases | MySQL & MongoDB |
+
+## API Integration
+
+Configure the API base URLs in your service files or environment variables.
+
+Example:
+
+```env
+VITE_ITEM_API=http://localhost:3000/api
+VITE_CUSTOMER_API=http://localhost:8081
+VITE_ORDER_API=http://localhost:3001/api
+```
+
+## Future Enhancements
+
+- Authentication & Authorization
+- Dashboard Analytics
+- Inventory Reports
+- Payment Processing
+- Role-Based Access Control
+
+## Author
+
+Dimuth Samaranayake
